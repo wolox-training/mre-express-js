@@ -1,11 +1,12 @@
 const axios = require('axios');
-const { url } = require('../../config').common.api;
+const { weetApi } = require('../../config').common.api;
+const { defaultError } = require('../errors');
 
 exports.getWeet = async () => {
   try {
-    const { data } = await axios.get(url);
+    const { data } = await axios.get(weetApi);
     return data;
   } catch (error) {
-    return error;
+    return defaultError(error);
   }
 };
