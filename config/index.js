@@ -35,7 +35,7 @@ const config = {
       bodySizeLimit: process.env.API_BODY_SIZE_LIMIT,
       parameterLimit: process.env.API_PARAMETER_LIMIT,
       port: process.env.PORT,
-      url: process.env.URL
+      weetApi: process.env.WEETAPI
     },
     session: {
       header_name: 'authorization',
