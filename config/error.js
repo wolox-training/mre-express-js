@@ -1,5 +1,5 @@
 const ErrorMessages = {
-  WEET_API_ERROR: 'Error al realizar la peticion de Weet'
+  WEET_API_ERROR: 'Weet api request is failed'
 };
 
 module.exports = ErrorMessages;
