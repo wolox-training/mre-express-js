@@ -4,23 +4,25 @@ const { badRequestError, dataExistError } = require('../errors');
 const { findUserByEmail } = require('../services/users');
 
 exports.validatePassword = password => {
-  if (!constants.ALPHANUMERIC.test(password)) {
+  const isAphanumeric = constants.ALPHANUMERIC.test(password);
+  if (!isAphanumeric) {
     throw badRequestError(ErrorMessages.PASSWORD_NOT_COMPLY);
   }
-  return true;
+  return isAphanumeric;
 };
 
 exports.validateEmail = email => {
-  if (!constants.EMAIL_MACH.test(email)) {
+  const isValidEmail = constants.EMAIL_MACH.test(email);
+  if (!isValidEmail) {
     throw badRequestError(ErrorMessages.USER_EMAIL_NOT_COMPANY);
   }
-  return true;
+  return isValidEmail;
 };
 
 exports.existEmail = async email => {
   const exitEmail = await findUserByEmail(email);
   if (exitEmail) {
-    return dataExistError(ErrorMessages.USER_EMAIL_EXITS);
+    throw dataExistError(ErrorMessages.USER_EMAIL_EXITS);
   }
-  return true;
+  return {};
 };

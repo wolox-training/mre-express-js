@@ -8,12 +8,11 @@ exports.createUser = async (req, res, next) => {
     logger.info(`Init create user by email: ${email}`);
     validateEmail(email);
     validatePassword(password);
-    existEmail(email);
+    await existEmail(email);
     const user = await createUser(name, lastName, email, password);
     logger.info(`The ${email} is created successfull`);
     return res.status(201).json(user.name);
   } catch (error) {
-    console.log(error);
     logger.error(error);
     return next(error);
   }
