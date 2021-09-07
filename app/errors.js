@@ -17,3 +17,6 @@ exports.badRequestError = message => internalError(message, exports.BAD_REQUEST_
 
 exports.DATA_EXIST_ERROR = 'data_exist_error';
 exports.dataExistError = message => internalError(message, exports.DATA_EXIST_ERROR);
+
+exports.ENCRYPT_PASSWORD_ERROR = 'encrypt_password_error';
+exports.encryptPasswordError = message => internalError(message, exports.ENCRYPT_PASSWORD_ERROR);
