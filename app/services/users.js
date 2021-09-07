@@ -1,16 +1,11 @@
-const { User } = require('../models/index');
+const { User } = require('../models');
 const logger = require('../logger');
 const { databaseError } = require('../errors');
 const ErrorMessages = require('../../config/error');
 
-exports.createUser = async (name, lastName, email, password) => {
+exports.createUser = async user => {
   try {
-    return await User.create({
-      name,
-      lastName,
-      email,
-      password
-    });
+    return await User.create(user);
   } catch (error) {
     logger.error(error.message);
     return databaseError(ErrorMessages.DATABASE_ERROR);
