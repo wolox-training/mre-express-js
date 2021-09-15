@@ -20,3 +20,6 @@ exports.dataExistError = message => internalError(message, exports.DATA_EXIST_ER
 
 exports.ENCRYPT_PASSWORD_ERROR = 'encrypt_password_error';
 exports.encryptPasswordError = message => internalError(message, exports.ENCRYPT_PASSWORD_ERROR);
+
+exports.SCHEMA_ERROR = 'schema_error';
+exports.schemaError = message => internalError(message, exports.SCHEMA_ERROR);
