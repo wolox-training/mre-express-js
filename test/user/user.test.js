@@ -36,7 +36,7 @@ describe('post /users create User', () => {
 
     expect(createSameUser.statusCode).toBe(409);
     expect(createSameUser.text).toMatch(
-      '{"message":"This email already exists","internal_code":"data_exist_error"}'
+      '{"message":"This email already exist.","internal_code":"data_exist_error"}'
     );
     done();
   });
@@ -63,7 +63,7 @@ describe('post /users create User', () => {
       .post('/users')
       .send()
       .set('Accept', 'application/json');
-    expect(createUser.statusCode).toBe(409);
+    expect(createUser.statusCode).toBe(422);
     done();
   });
 });
