@@ -1,7 +1,17 @@
-const { checkSchema } = require('express-validator/check');
+const { checkSchema } = require('express-validator');
 const { validationResult } = require('express-validator');
 const logger = require('../logger');
-const { schemaError } = require('../errors');
+const { schemaError, dataExistError } = require('../errors');
+const ErrorMessages = require('../../config/error');
+const { findUserByEmail } = require('../services/users');
+
+exports.existUserDB = async (req, _, next) => {
+  const exitEmail = await findUserByEmail(req.body.email);
+  if (exitEmail) {
+    return next(dataExistError(ErrorMessages.USER_EMAIL_EXITS));
+  }
+  return next();
+};
 
 const validateResult = (req, _, next) => {
   const err = validationResult(req);
