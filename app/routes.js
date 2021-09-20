@@ -2,7 +2,7 @@ const { healthCheck } = require('./controllers/healthCheck');
 const userController = require('./controllers/users');
 const { userSchema } = require('./schemas/users');
 const { existUserDB } = require('./middlewares/users');
-const { validateBySchema } = require('./middlewares');
+const { validateBySchema } = require('./middlewares/validateBySchema');
 
 exports.init = app => {
   app.get('/health', healthCheck);
