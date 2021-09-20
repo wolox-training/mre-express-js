@@ -5,7 +5,7 @@ const app = require('../../app');
 const user = {
   name: 'Miguelangel',
   lastName: 'Rendon',
-  email: 'miguelangel2@wolox.co',
+  email: 'miguelangel33@wolox.co',
   password: '12345567'
 };
 
@@ -36,7 +36,7 @@ describe('post /users create User', () => {
 
     expect(createSameUser.statusCode).toBe(409);
     expect(createSameUser.text).toMatch(
-      '{"message":"This email already exists","internal_code":"data_exist_error"}'
+      '{"message":"This email already exist.","internal_code":"data_exist_error"}'
     );
     done();
   });
@@ -51,9 +51,9 @@ describe('post /users create User', () => {
       .send(userErroPassword)
       .set('Accept', 'application/json');
 
-    expect(createUser.statusCode).toBe(400);
+    expect(createUser.statusCode).toBe(422);
     expect(createUser.text).toMatch(
-      '{"message":"The password not comply the required.","internal_code":"bad_request_error"}'
+      '{"message":{"password":{"value":"1234-","msg":"Password should be at least 8 characters","param":"password","location":"body"}},"internal_code":"schema_error"}'
     );
     done();
   });
@@ -63,7 +63,7 @@ describe('post /users create User', () => {
       .post('/users')
       .send()
       .set('Accept', 'application/json');
-    expect(createUser.statusCode).toBe(400);
+    expect(createUser.statusCode).toBe(422);
     done();
   });
 });
