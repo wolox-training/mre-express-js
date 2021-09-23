@@ -10,7 +10,8 @@ const statusCodes = {
   [errors.BAD_REQUEST_ERROR]: 400,
   [errors.DATA_EXIST_ERROR]: 409,
   [errors.ENCRYPT_PASSWORD_ERROR]: 400,
-  [errors.SCHEMA_ERROR]: 422
+  [errors.SCHEMA_ERROR]: 422,
+  [errors.DATA_NOT_FOUND_ERROR]: 400
 };
 
 exports.handle = (error, req, res, next) => {
