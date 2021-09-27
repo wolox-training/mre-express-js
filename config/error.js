@@ -12,7 +12,8 @@ const ErrorMessages = {
   USER_EMAIL_EXIST: 'This email already exist.',
   PASSWORD_NOT_COMPLY: 'The password not comply the required.',
   PASSWORD_NOT_ENCRYPT: 'The password encrypt have an error.',
-  PASSWORD_OR_EMAIL_NOT_MATCH: 'Error due to incorrect access or password failure'
+  PASSWORD_OR_EMAIL_NOT_MATCH: 'Error due to incorrect access or password failure',
+  JWT_TOKEN_ERROR: 'Error created the jwt token'
 };
 
 module.exports = ErrorMessages;

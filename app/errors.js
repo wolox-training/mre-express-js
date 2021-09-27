@@ -24,5 +24,5 @@ exports.encryptPasswordError = message => internalError(message, exports.ENCRYPT
 exports.SCHEMA_ERROR = 'schema_error';
 exports.schemaError = message => internalError(message, exports.SCHEMA_ERROR);
 
-exports.DATA_NOT_FOUND_ERROR = 'data_not_found_error';
-exports.dataNotFoundError = message => internalError(message, exports.DATA_NOT_FOUND_ERROR);
+exports.JWT_ERROR = 'jwt_error';
+exports.jwtError = message => internalError(message, exports.JWT_ERROR);

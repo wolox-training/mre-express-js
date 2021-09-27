@@ -2,7 +2,7 @@ const logger = require('../logger');
 const { createUser, findUserByEmail } = require('../services/users');
 const { encryptPassword, validPassword } = require('../helpers/password');
 const { createUserToken } = require('../helpers/user');
-const { dataNotFoundError } = require('../errors');
+const { badRequestError } = require('../errors');
 const ErrorMessages = require('../../config/error');
 
 exports.createUser = async (req, res, next) => {
@@ -25,18 +25,18 @@ exports.loginUser = async (req, res, next) => {
     logger.info(`Init login user by email: ${email}`);
     const dataUser = await findUserByEmail(email);
     if (!dataUser) {
-      logger.error('email', dataUser);
-      throw dataNotFoundError(ErrorMessages.PASSWORD_OR_EMAIL_NOT_MATCH);
+      logger.error('The user not exit in the database', dataUser);
+      throw badRequestError(ErrorMessages.PASSWORD_OR_EMAIL_NOT_MATCH);
     }
     const { dataValues } = dataUser;
     const validpasword = await validPassword(password, dataValues.password);
     if (!validpasword) {
-      logger.error('password', validpasword);
-      throw dataNotFoundError(ErrorMessages.PASSWORD_OR_EMAIL_NOT_MATCH);
+      logger.error('The password is not mach', validpasword);
+      throw badRequestError(ErrorMessages.PASSWORD_OR_EMAIL_NOT_MATCH);
     }
-    const token = createUserToken(dataValues);
+    const token = await createUserToken(dataValues);
     logger.info(`The ${email} created token is successfull`);
-    return res.status(200).json({ ...dataValues, token });
+    return res.status(200).json(token);
   } catch (error) {
     logger.error(error);
     return next(error);

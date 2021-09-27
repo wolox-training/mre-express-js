@@ -25,6 +25,10 @@ const deepMerge = (target, source) => {
 
 const config = {
   common: {
+    jwt: {
+      secretKey: process.env.SECRET_KEY,
+      secretKeyExpires: process.env.SECRET_KEY_EXPIRES
+    },
     database: {
       host: process.env.DB_HOST,
       port: process.env.DB_PORT,

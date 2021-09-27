@@ -29,7 +29,6 @@ describe('post /users/sessions', () => {
       .set('Accept', 'application/json');
 
     expect(loginUser.statusCode).toBe(200);
-    expect(loginUser.body.email).toMatch('miguelangel33@wolox.co');
     done();
   });
 
@@ -45,7 +44,7 @@ describe('post /users/sessions', () => {
 
     expect(loginUser.statusCode).toBe(400);
     expect(loginUser.text).toMatch(
-      '{"message":"Error due to incorrect access or password failure","internal_code":"data_not_found_error"}'
+      '{"message":"Error due to incorrect access or password failure","internal_code":"bad_request_error"}'
     );
     done();
   });
@@ -68,7 +67,7 @@ describe('post /users/sessions', () => {
 
     expect(loginUser.statusCode).toBe(400);
     expect(loginUser.text).toMatch(
-      '{"message":"Error due to incorrect access or password failure","internal_code":"data_not_found_error"}'
+      '{"message":"Error due to incorrect access or password failure","internal_code":"bad_request_error"}'
     );
     done();
   });
