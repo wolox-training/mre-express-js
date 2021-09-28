@@ -23,3 +23,6 @@ exports.encryptPasswordError = message => internalError(message, exports.ENCRYPT
 
 exports.SCHEMA_ERROR = 'schema_error';
 exports.schemaError = message => internalError(message, exports.SCHEMA_ERROR);
+
+exports.JWT_ERROR = 'jwt_error';
+exports.jwtError = message => internalError(message, exports.JWT_ERROR);
