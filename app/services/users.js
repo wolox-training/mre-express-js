@@ -3,6 +3,15 @@ const logger = require('../logger');
 const { databaseError } = require('../errors');
 const ErrorMessages = require('../../config/error');
 
+exports.getUsers = async () => {
+  try {
+    return await User.findAll();
+  } catch (error) {
+    logger.error(error.message);
+    return databaseError(ErrorMessages.DATABASE_ERROR);
+  }
+};
+
 exports.createUser = async user => {
   try {
     return await User.create(user);

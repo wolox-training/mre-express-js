@@ -1,9 +1,21 @@
 const logger = require('../logger');
-const { createUser, findUserByEmail } = require('../services/users');
+const { getUsers, createUser, findUserByEmail } = require('../services/users');
 const { encryptPassword, validPassword } = require('../helpers/password');
 const { createUserToken } = require('../helpers/user');
 const { badRequestError } = require('../errors');
 const ErrorMessages = require('../../config/error');
+
+exports.getUsers = async (req, res, next) => {
+  try {
+    logger.info('Init get all users');
+    const users = await getUsers();
+    logger.info('Finish get all users');
+    return res.status(200).json(users);
+  } catch (error) {
+    logger.error(error);
+    return next(error);
+  }
+};
 
 exports.createUser = async (req, res, next) => {
   try {
