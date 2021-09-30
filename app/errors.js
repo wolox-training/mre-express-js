@@ -26,3 +26,6 @@ exports.schemaError = message => internalError(message, exports.SCHEMA_ERROR);
 
 exports.JWT_ERROR = 'jwt_error';
 exports.jwtError = message => internalError(message, exports.JWT_ERROR);
+
+exports.JWT_MACH_ERROR = 'jwt_mach_error';
+exports.jwtMachError = message => internalError(message, exports.JWT_MACH_ERROR);
