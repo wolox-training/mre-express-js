@@ -30,7 +30,8 @@ describe('Get /users', () => {
     expect(loginUser.statusCode).toBe(200);
 
     const getUsers = await request(app)
-      .get('/users', { limit: 5, skip: 1 })
+      .get('/users')
+      .query({ page: 1, limit: 3 })
       .set('Authorization', `Bearer ${loginUser.body}`)
       .set('Accept', 'application/json');
 
@@ -59,7 +60,7 @@ describe('Get /users', () => {
       .get('/users')
       .set('Authorization', `Bearer ${loginUser.body}`)
       .set('Accept', 'application/json');
-    expect(getUsers.statusCode).toBe(200);
+    expect(getUsers.statusCode).toBe(422);
     done();
   });
 });
