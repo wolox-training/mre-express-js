@@ -1,23 +1,18 @@
-const jwt = require('jsonwebtoken');
 const logger = require('../logger');
-const config = require('../../config').common.jwt;
 const { jwtMachError } = require('../errors');
 const ErrorMessages = require('../../config/error');
+const { validateUserToken } = require('../helpers/user');
 
-exports.authValidator = async (req, res, next) => {
-  let token = '';
-  if (!req.headers.authorization) {
-    logger.error('The user not have authorization');
-    return next(jwtMachError(ErrorMessages.JWT_MACH_ERROR));
-  }
-  token = req.headers.authorization.substring(7);
-  await jwt.verify(token, config.secretKey, (error, decoded) => {
-    if (error) {
-      logger.error('The token is not verify', error);
-      return next(jwtMachError(ErrorMessages.JWT_EXPIRED_ERROR));
+exports.authValidator = async (req, _, next) => {
+  try {
+    if (!req.headers.authorization) {
+      logger.error('The user not have authorization');
+      throw jwtMachError(ErrorMessages.JWT_MACH_ERROR);
     }
-    req.body.user = decoded.user;
-    return decoded;
-  });
-  return next();
+    const token = req.headers.authorization.substring(7);
+    await validateUserToken(token);
+    return next();
+  } catch (error) {
+    return next(error);
+  }
 };
