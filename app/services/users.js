@@ -5,7 +5,15 @@ const ErrorMessages = require('../../config/error');
 
 exports.getUsers = async (offset, limit) => {
   try {
-    return await User.findAll({ offset, limit });
+    const user = await User.findAndCountAll({
+      limit,
+      offset
+    });
+    return {
+      page: parseInt(offset),
+      limit: parseInt(limit),
+      ...user
+    };
   } catch (error) {
     logger.error(error.message);
     return databaseError(ErrorMessages.DATABASE_ERROR);

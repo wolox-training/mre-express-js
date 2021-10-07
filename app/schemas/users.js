@@ -66,3 +66,22 @@ exports.userLoginSchema = {
     errorMessage: ErrorMessages.PASSWORD_NOT_COMPLY
   }
 };
+
+exports.getUser = {
+  page: {
+    in: ['query'],
+    isInt: true,
+    isEmpty: {
+      negated: true,
+      errorMessage: ErrorMessages.PAGE_REQUIRED
+    }
+  },
+  limit: {
+    in: ['query'],
+    isInt: true,
+    isEmpty: {
+      negated: true,
+      errorMessage: ErrorMessages.LIMIT_REQUIRED
+    }
+  }
+};
