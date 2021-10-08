@@ -58,6 +58,7 @@ describe('Get /users', () => {
 
     const getUsers = await request(app)
       .get('/users')
+      .query({ page: '1', limit: 3 })
       .set('Authorization', `Bearer ${loginUser.body}`)
       .set('Accept', 'application/json');
     expect(getUsers.statusCode).toBe(422);
