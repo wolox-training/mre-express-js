@@ -13,7 +13,13 @@ const ErrorMessages = {
   PASSWORD_NOT_COMPLY: 'The password not comply the required.',
   PASSWORD_NOT_ENCRYPT: 'The password encrypt have an error.',
   PASSWORD_OR_EMAIL_NOT_MATCH: 'Error due to incorrect access or password failure',
-  JWT_TOKEN_ERROR: 'Error created the jwt token'
+  JWT_TOKEN_ERROR: 'Error created the jwt token',
+  JWT_MACH_ERROR: 'The user is not authorized',
+  JWT_EXPIRED_ERROR: 'The token user is expired',
+
+  // Get User
+  LIMIT_REQUIRED: 'The limit is required.',
+  PAGE_REQUIRED: 'The page is required.'
 };
 
 module.exports = ErrorMessages;
