@@ -9,7 +9,7 @@ exports.authValidator = async (req, _, next) => {
       logger.error('The user not have authorization');
       throw jwtMachError(ErrorMessages.JWT_MACH_ERROR);
     }
-    const token = req.headers.authorization.substring(7);
+    const token = req.headers.authorization.replace(/^Bearer\s+/, '');
     await validateUserToken(token);
     return next();
   } catch (error) {

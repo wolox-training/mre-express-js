@@ -71,17 +71,11 @@ exports.getUser = {
   page: {
     in: ['query'],
     isInt: true,
-    isEmpty: {
-      negated: true,
-      errorMessage: ErrorMessages.PAGE_REQUIRED
-    }
+    optional: true
   },
   limit: {
     in: ['query'],
     isInt: true,
-    isEmpty: {
-      negated: true,
-      errorMessage: ErrorMessages.LIMIT_REQUIRED
-    }
+    optional: true
   }
 };

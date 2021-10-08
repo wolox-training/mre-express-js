@@ -8,7 +8,8 @@ const ErrorMessages = require('../../config/error');
 exports.getUsers = async (req, res, next) => {
   try {
     logger.info('Init get all users');
-    const { page, limit } = req.query;
+    const page = req.query.page || 1;
+    const limit = req.query.limit || 10;
     const users = await getUsers(page, limit);
     logger.info('Finish get all users');
     return res.status(200).json(users);
